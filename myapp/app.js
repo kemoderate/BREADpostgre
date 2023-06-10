@@ -1,9 +1,9 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 const { Pool } = require('pg');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 
 const pool = new Pool({
@@ -13,6 +13,9 @@ const pool = new Pool({
   password: '12345',
   port: 5432,
 });
+const indexRouter = require('./routes/index')(pool);
+const usersRouter = require('./routes/users');
+
 
 pool.connect((err, client, done) => {
   if (err) {
@@ -21,9 +24,6 @@ pool.connect((err, client, done) => {
     console.log('Connected to the database');
   }
 });
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 
