@@ -89,7 +89,7 @@
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Search</button>
-      <a href="/" class="btn btn-secondary">Back</a>
+      <a href="/" class="btn btn-secondary">Reset</a>
     </form>
   </div>
   <br>
@@ -157,19 +157,20 @@
   <div class="container">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <!-- error handling previous page -->
-        <% if(page > 1) { %>
+        <% if (page > 1) { %>
           <li class="page-item">
             <a class="page-link" href="<%= url.replace(`page=${parseInt(page)}`, `page=${parseInt(page) - 1}`) %>">
-            Previous</a>
+              Previous
+            </a>
           </li>
         <% } %>
-        <% for( let i = 1; i <= pages; i++ ) { %>
+        <% for (let i = 1; i <= pages; i++) { %>
           <li class="page-item">
-            <a href="<%= url.replace(`page=${page}`, `page=${i}`) %>" class="page-link <%= page == i ? 'active' : '' %>" ><%=i %></a>
+            <a href="<%= url.replace(`page=${page}`, `page=${i}`) %>&sortby=<%= sortBy %>&sortorder=<%= sortDir %>" class="page-link <%= page == i ? 'active' : '' %>">
+              <%= i %>
+            </a>
           </li>
         <% } %>
-        <!-- error handling next page -->
         <% if (page < pages) { %>
           <li class="page-item">
             <a class="page-link" href="<%= url.replace(`page=${parseInt(page)}`, `page=${parseInt(page) + 1}`) %>">
@@ -179,6 +180,7 @@
         <% } %>
       </ul>
     </nav>
+    
     <a href="/add" class="btn btn-primary">Add</a>
   </div>
 </body>

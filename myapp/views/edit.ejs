@@ -58,10 +58,10 @@
                     Boolean
                 </label>
                 <div class="col-sm-8">
-                    <select name="boolean" id="boolean" class="form-select">
-                        <option value="true" <%= data.boolean == "true" ? "selected" : "" %>>True</option>
-                        <option value="false" <%= data.boolean == "false" ? "selected" : "" %>>False</option>
-                    </select>
+                    <select id="boolean" name="boolean" class="form-select" required>
+                        <option value="true" <%= data.boolean ? 'selected' : '' %>>True</option>
+                        <option value="false" <%= !data.boolean ? 'selected' : '' %>>False</option>
+                      </select>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
